@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,18 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Game specific colors
+				trivia: {
+					primary: '#6D28D9', // Purple
+					secondary: '#4F46E5', // Indigo
+					accent: '#EC4899', // Pink
+					success: '#10B981', // Green
+					warning: '#F59E0B', // Amber
+					danger: '#EF4444', // Red
+					background: '#111827', // Dark blue-gray
+					foreground: '#F3F4F6', // Light gray
+					card: '#1F2937', // Darker gray
 				}
 			},
 			borderRadius: {
@@ -84,11 +97,21 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'pulse-scale': {
+					'0%, 100%': { transform: 'scale(1)' },
+					'50%': { transform: 'scale(1.05)' }
+				},
+				'countdown': {
+					'0%': { width: '100%' },
+					'100%': { width: '0%' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'pulse-scale': 'pulse-scale 2s infinite',
+				'countdown': 'countdown var(--duration, 10s) linear forwards'
 			}
 		}
 	},

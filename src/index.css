@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,16 +14,16 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 263 70% 50%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 210 40% 96.1%;
+    --secondary: 244 61% 58%;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
+    --accent: 326 73% 60%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
@@ -35,19 +36,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -61,16 +55,16 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
+    --primary: 263 70% 50%;
     --primary-foreground: 222.2 47.4% 11.2%;
 
-    --secondary: 217.2 32.6% 17.5%;
+    --secondary: 244 61% 58%;
     --secondary-foreground: 210 40% 98%;
 
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 217.2 32.6% 17.5%;
+    --accent: 326 73% 60%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62.8% 30.6%;
@@ -96,6 +90,49 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-trivia-background text-trivia-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .trivia-card {
+    @apply bg-trivia-card rounded-xl shadow-lg border border-purple-800/30 p-6;
+  }
+  
+  .trivia-gradient-bg {
+    @apply bg-gradient-to-br from-trivia-primary via-trivia-secondary to-trivia-accent;
+  }
+  
+  .trivia-button {
+    @apply rounded-lg px-4 py-2 font-medium transition-all duration-200 
+    bg-gradient-to-r from-trivia-primary to-trivia-secondary hover:from-trivia-accent 
+    hover:to-trivia-primary text-white shadow-md hover:shadow-lg active:scale-95;
+  }
+  
+  .answer-button {
+    @apply trivia-card w-full text-left p-4 hover:bg-purple-800/20 transition-colors
+    border-2 border-transparent hover:border-purple-500 cursor-pointer mb-3;
+  }
+  
+  .answer-button.correct {
+    @apply bg-green-500/20 border-green-500 pointer-events-none;
+  }
+  
+  .answer-button.incorrect {
+    @apply bg-red-500/20 border-red-500 pointer-events-none;
+  }
+  
+  .answer-button.selected {
+    @apply border-yellow-500;
+  }
+  
+  .timer-bar {
+    @apply h-2 bg-gradient-to-r from-green-500 via-yellow-500 to-red-500 
+    rounded-full overflow-hidden;
+  }
+  
+  .timer-bar-progress {
+    @apply h-full animate-countdown origin-left;
   }
 }
