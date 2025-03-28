@@ -10,8 +10,19 @@ import { toast } from "@/components/ui/use-toast";
 import MainNavigation from "@/components/MainNavigation";
 import { Users, Globe, Bolt, Clock, Play, Plus } from "lucide-react";
 
-// Mock data for demonstration
-const mockSessions = [
+// Define the allowed status values using a literal type
+interface TriviaSession {
+  id: string;
+  host: string;
+  players: number;
+  status: "lobby" | "active" | "completed";
+  category: string;
+  maxPlayers: number;
+  created: Date;
+}
+
+// Mock data for demonstration - now with proper typed status values
+const mockSessions: TriviaSession[] = [
   {
     id: "ABC123",
     host: "TriviaMaster",
@@ -40,16 +51,6 @@ const mockSessions = [
     created: new Date(Date.now() - 60000),
   },
 ];
-
-interface TriviaSession {
-  id: string;
-  host: string;
-  players: number;
-  status: "lobby" | "active" | "completed";
-  category: string;
-  maxPlayers: number;
-  created: Date;
-}
 
 const Lobby = () => {
   const navigate = useNavigate();
