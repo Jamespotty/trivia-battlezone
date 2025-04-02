@@ -1,5 +1,6 @@
 
 import { generateClient } from 'aws-amplify/api';
+import { fetchAuthSession } from 'aws-amplify/auth';
 
 // This is a placeholder for the actual generated types from Amplify
 // You'll need to run 'npx ampx generate-types' after setting up Amplify backend
@@ -44,8 +45,36 @@ export interface UserProfileModel {
 // Generate the Amplify API client
 const client = generateClient();
 
+// Check if user is authenticated
+const isAuthenticated = async () => {
+  try {
+    const session = await fetchAuthSession();
+    return session.tokens !== undefined;
+  } catch (error) {
+    console.error('Error checking authentication status:', error);
+    return false;
+  }
+};
+
 // Mock implementation until your Amplify backend is set up
 const dataService = {
+  // Auth related methods
+  getCurrentUser: async () => {
+    try {
+      const authenticated = await isAuthenticated();
+      if (!authenticated) {
+        return null;
+      }
+      
+      // In a real implementation, you would fetch the user from Cognito
+      // For now, return a mock user if authenticated
+      return { username: 'mockUser', attributes: { email: 'user@example.com' } };
+    } catch (error) {
+      console.error('Error getting current user:', error);
+      return null;
+    }
+  },
+  
   // Questions
   fetchQuestions: async (category?: string, limit = 10) => {
     console.log('Fetching questions with category:', category);

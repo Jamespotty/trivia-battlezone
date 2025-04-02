@@ -7,4 +7,5 @@ import { configureAmplify } from './aws-config'
 // Initialize AWS Amplify
 configureAmplify();
 
+// Mount the application
 createRoot(document.getElementById("root")!).render(<App />);

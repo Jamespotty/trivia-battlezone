@@ -1,10 +1,11 @@
 
 import { Amplify } from 'aws-amplify';
 import { cognitoUserPoolsTokenProvider } from 'aws-amplify/auth/cognito';
+import { type ResourcesConfig } from 'aws-amplify/core';
 
 // Initialize Amplify with default configuration
 // Replace this with your actual Amplify configuration after running 'npx ampx sandbox' or 'npx ampx deploy'
-const awsConfig = {
+const awsConfig: ResourcesConfig = {
   // This is a placeholder. You'll need to replace with your actual AWS Amplify configuration
   Auth: {
     Cognito: {
@@ -20,7 +21,7 @@ const awsConfig = {
     GraphQL: {
       endpoint: 'REPLACE_WITH_YOUR_APPSYNC_ENDPOINT',
       region: 'us-east-1', // Replace with your region
-      defaultAuthMode: 'userPool',
+      defaultAuthMode: 'userPool' as const,
     }
   }
 };
@@ -50,6 +51,14 @@ export const configureAmplify = () => {
     removeItem: (key) => {
       try {
         localStorage.removeItem(key);
+        return Promise.resolve();
+      } catch (error) {
+        return Promise.reject(error);
+      }
+    },
+    clear: () => {
+      try {
+        localStorage.clear();
         return Promise.resolve();
       } catch (error) {
         return Promise.reject(error);
