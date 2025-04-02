@@ -1,7 +1,6 @@
-
 import { Amplify } from 'aws-amplify';
 import { cognitoUserPoolsTokenProvider } from 'aws-amplify/auth/cognito';
-import { type ResourcesConfig } from 'aws-amplify/core';
+import type { ResourcesConfig } from 'aws-amplify';
 
 // Initialize Amplify with default configuration
 // Replace this with your actual Amplify configuration after running 'npx ampx sandbox' or 'npx ampx deploy'
